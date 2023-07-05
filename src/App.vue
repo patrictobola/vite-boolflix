@@ -1,17 +1,37 @@
 <script>
 import { store } from './data/store';
-import AppHeader from './components/AppHeader.vue'
-import AppMain from './components/AppMain.vue'
+import axios from 'axios';
+import AppHeader from './components/AppHeader.vue';
+import AppMain from './components/AppMain.vue';
+
+const apiKey = '95094d5fa97d95a2c37307671297d10b'
+const baseUri = 'https://api.themoviedb.org/3'
 
 export default {
+  data() {
+    return store
+  },
   components: {
     AppHeader,
     AppMain
   },
 
   methods: {
-
+    fetchSearchedFilms() {
+      const endpoint = `${baseUri}/search/movie?api_key=${apiKey}&query=prova`
+      axios.get(endpoint).then(res => {
+        store.results = res.data.results
+      }).catch(err => {
+        console.log(err.message)
+      }).then(() => {
+        console.log('Daje è andata!')
+      })
+    },
   },
+
+  created() {
+    this.fetchSearchedFilms();
+  }
 }
 </script>
 
