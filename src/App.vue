@@ -17,16 +17,32 @@ export default {
   },
 
   methods: {
-    fetchSearchedFilms(word) {
-      const endpoint = `${baseUri}/search/movie?api_key=${apiKey}&query=${word}`
+    fetchApiDatas(endpoint) {
       axios.get(endpoint).then(res => {
-        store.results = res.data.results
+        store.films = res.data.results
       }).catch(err => {
         console.log(err.message)
       }).then(() => {
         console.log('Daje è andata!')
       })
     },
+
+    fetchSearchedFilms(word) {
+      const endpoint = `${baseUri}/search/movie?api_key=${apiKey}&query=${word}`;
+      this.fetchApiDatas(endpoint)
+      this.fetchSeachedTVSeries(word)
+    },
+    fetchSeachedTVSeries(word) {
+      const endpoint = `${baseUri}/search/tv?api_key=${apiKey}&query=${word}`
+      axios.get(endpoint).then(res => {
+        store.tvSeries = res.data.results
+      }).catch(err => {
+        console.log(err.message)
+      }).then(() => {
+        console.log('Daje è andata!')
+      })
+    },
+
   },
 }
 </script>
