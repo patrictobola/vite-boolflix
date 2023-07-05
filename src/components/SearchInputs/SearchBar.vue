@@ -5,13 +5,14 @@ export default {
             searchedTerm: ''
         }
     },
-    emits: ['search-movie']
+    emits: ['search-movie'],
+    props: { placeholder: String }
 }
 </script>
 
 <template>
     <form action="submit">
-        <input type="text" v-model="searchedTerm" name="searchBar" id="searchBar">
+        <input type="text" v-model="searchedTerm" name="searchBar" id="searchBar" :placeholder="placeholder || 'Cerca quì'">
         <button @click.prevent="$emit('search-movie', searchedTerm)">Cerca!</button>
     </form>
 </template>

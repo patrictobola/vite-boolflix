@@ -21,7 +21,7 @@ export default {
                 <h1>BOOLFLIX</h1>
             </div>
             <div>
-                <SearchBar @search-movie="fetchSearchedMovie" />
+                <SearchBar @search-movie="fetchSearchedMovie" placeholder="Cerca quì il tuo film o serie tv" />
             </div>
         </div>
     </div>
