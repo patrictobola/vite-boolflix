@@ -10,7 +10,9 @@ export default {
             // vote: store.results.vote_avarage,
             // language: store.results.original_language,
             // id: store.results.id,
-            store
+            store,
+            path: store.posterPath
+
         }
     },
 
@@ -29,7 +31,8 @@ export default {
                 <ul>
                     <li v-for="film in store.films" :key="film.id">
                         <FilmCard :title="film.title" :originalTitle="film.original_title"
-                            :language="film.original_language" :vote="film.vote_average" />
+                            :language="film.original_language" :vote="film.vote_average" :poster="film.poster_path"
+                            :path="path" />
                     </li>
                 </ul>
             </div>
