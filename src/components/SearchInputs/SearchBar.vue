@@ -1,9 +1,18 @@
-<script></script>
+<script>
+export default {
+    data() {
+        return {
+            searchedTerm: ''
+        }
+    },
+    emits: ['search-movie']
+}
+</script>
 
 <template>
     <form action="submit">
-        <input type="text" name="searchBar" id="searchBar">
-        <button @click.prevent="">Cerca!</button>
+        <input type="text" v-model="searchedTerm" name="searchBar" id="searchBar">
+        <button @click.prevent="$emit('search-movie', searchedTerm)">Cerca!</button>
     </form>
 </template>
 

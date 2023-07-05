@@ -17,8 +17,8 @@ export default {
   },
 
   methods: {
-    fetchSearchedFilms() {
-      const endpoint = `${baseUri}/search/movie?api_key=${apiKey}&query=prova`
+    fetchSearchedFilms(word) {
+      const endpoint = `${baseUri}/search/movie?api_key=${apiKey}&query=${word}`
       axios.get(endpoint).then(res => {
         store.results = res.data.results
       }).catch(err => {
@@ -28,15 +28,11 @@ export default {
       })
     },
   },
-
-  created() {
-    this.fetchSearchedFilms();
-  }
 }
 </script>
 
 <template>
-  <AppHeader />
+  <AppHeader @search-movie="fetchSearchedFilms" />
   <AppMain />
 </template>
 

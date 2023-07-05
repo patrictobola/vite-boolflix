@@ -4,6 +4,11 @@ import SearchBar from './SearchInputs/SearchBar.vue';
 export default {
     components: {
         SearchBar
+    },
+    methods: {
+        fetchSearchedMovie(word) {
+            this.$emit('search-movie', word)
+        }
     }
 }
 
@@ -16,7 +21,7 @@ export default {
                 <h1>BOOLFLIX</h1>
             </div>
             <div>
-                <SearchBar />
+                <SearchBar @search-movie="fetchSearchedMovie" />
             </div>
         </div>
     </div>
