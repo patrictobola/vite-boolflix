@@ -1,6 +1,6 @@
 <script>
 import { store } from '../data/store';
-import ProductionCard from './ProductionCard.vue'
+import ProductionCard from './ProductionCard/ProductionCard.vue'
 
 export default {
     data() {
