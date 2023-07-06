@@ -1,4 +1,6 @@
 <script>
+import { callWithAsyncErrorHandling } from 'vue';
+
 // TODO Remove 
 // import { store } from '../data/store';
 
@@ -16,7 +18,7 @@ export default {
     data() {
         return {
             hasItHover: false,
-            overView: this.overview.slice(0, 100) + "..."
+            summary: this.overview.slice(0, 100) + "..."
         }
     },
 
@@ -24,6 +26,10 @@ export default {
         hasPoster() {
             return this.poster
         },
+        roundedVote() {
+            const vote = this.vote;
+            return Math.round(vote / 2)
+        }
     },
 }
 
@@ -38,7 +44,7 @@ export default {
     </div>
     <div v-else class="card hover" @mouseenter="hasItHover = true" @mouseleave="hasItHover = false">
         <h1>{{ originalTitle }}</h1>
-        <p>{{ overView }}</p>
+        <p>{{ summary }}</p>
     </div>
 </template>
 
