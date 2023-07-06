@@ -28,7 +28,7 @@ export default {
         },
         roundedVote() {
             const vote = this.vote;
-            return Math.round(vote / 2)
+            return Math.round(vote) / 2;
         }
     },
 }
@@ -44,6 +44,7 @@ export default {
     </div>
     <div v-else class="card hover" @mouseenter="hasItHover = true" @mouseleave="hasItHover = false">
         <h1>{{ originalTitle }}</h1>
+        <span>Vote: {{ roundedVote }}</span>
         <p>{{ summary }}</p>
     </div>
 </template>

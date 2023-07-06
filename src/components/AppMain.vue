@@ -1,6 +1,6 @@
 <script>
 import { store } from '../data/store';
-import FilmCard from './FilmCard.vue'
+import ProductionCard from './ProductionCard.vue'
 
 export default {
     data() {
@@ -17,7 +17,7 @@ export default {
     },
 
     components: {
-        FilmCard,
+        ProductionCard,
     }
 }
 </script>
@@ -30,7 +30,7 @@ export default {
                 <h1>Films</h1>
                 <ul>
                     <li v-for="film in store.films" :key="film.id">
-                        <FilmCard :title="film.title" :originalTitle="film.original_title"
+                        <ProductionCard :title="film.title" :originalTitle="film.original_title"
                             :language="film.original_language" :vote="film.vote_average" :poster="film.poster_path"
                             :imgPath="imgPath" :overview="film.overview" />
                     </li>
@@ -40,7 +40,7 @@ export default {
                 <h1>TV Series</h1>
                 <ul>
                     <li v-for="serie in store.tvSeries" :key="serie.id">
-                        <FilmCard />
+                        <ProductionCard />
                     </li>
                 </ul>
             </div> -->
