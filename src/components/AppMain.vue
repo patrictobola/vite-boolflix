@@ -11,7 +11,7 @@ export default {
             // language: store.results.original_language,
             // id: store.results.id,
             store,
-            path: store.posterPath
+            imgPath: store.posterPath
 
         }
     },
@@ -32,7 +32,7 @@ export default {
                     <li v-for="film in store.films" :key="film.id">
                         <FilmCard :title="film.title" :originalTitle="film.original_title"
                             :language="film.original_language" :vote="film.vote_average" :poster="film.poster_path"
-                            :path="path" />
+                            :imgPath="imgPath" />
                     </li>
                 </ul>
             </div>
@@ -65,6 +65,6 @@ ul {
 li {
     width: calc(100% / 5 - 40px);
     padding: 20px;
-    height: 400px;
+    height: 279px;
 }
 </style>
