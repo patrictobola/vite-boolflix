@@ -4,7 +4,7 @@ import axios from 'axios';
 import AppHeader from './components/AppHeader.vue';
 import AppMain from './components/AppMain.vue';
 
-const apiKey = '95094d5fa97d95a2c37307671297d10b'
+const apiKey = '?api_key=95094d5fa97d95a2c37307671297d10b'
 const baseUri = 'https://api.themoviedb.org/3'
 
 export default {
@@ -17,9 +17,9 @@ export default {
   },
 
   methods: {
-    fetchApiDatas(endpoint) {
+    fetchApiDatas(endpoint, path) {
       axios.get(endpoint).then(res => {
-        store.films = res.data.results
+        store[path] = res.data.results
       }).catch(err => {
         console.log(err.message)
       }).then(() => {
@@ -27,20 +27,19 @@ export default {
       })
     },
 
-    fetchSearchedFilms(word) {
-      const endpoint = `${baseUri}/search/movie?api_key=${apiKey}&query=${word}`;
-      this.fetchApiDatas(endpoint)
-      this.fetchSeachedTVSeries(word)
+    fetchSearchedProduction(word) {
+      this.fetchSearchedFilms(word);
+      this.fetchSearchedTVSeries(word);
     },
-    fetchSeachedTVSeries(word) {
-      const endpoint = `${baseUri}/search/tv?api_key=${apiKey}&query=${word}`
-      axios.get(endpoint).then(res => {
-        store.tvSeries = res.data.results
-      }).catch(err => {
-        console.log(err.message)
-      }).then(() => {
-        console.log('Daje è andata!')
-      })
+
+    fetchSearchedFilms(word) {
+      const endpoint = `${baseUri}/search/movie${apiKey}&query=${word}`;
+      this.fetchApiDatas(endpoint, "films")
+      this.fetchSearchedTVSeries(word)
+    },
+    fetchSearchedTVSeries(word) {
+      const endpoint = `${baseUri}/search/tv${apiKey}&query=${word}`
+      this.fetchApiDatas(endpoint, "tvSeries")
     },
 
   },
@@ -48,7 +47,7 @@ export default {
 </script>
 
 <template>
-  <AppHeader @search-movie="fetchSearchedFilms" />
+  <AppHeader @search-movie="fetchSearchedProduction" />
   <AppMain />
 </template>
 

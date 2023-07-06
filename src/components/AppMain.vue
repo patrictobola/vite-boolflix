@@ -36,14 +36,14 @@ export default {
                     </li>
                 </ul>
             </div>
-            <div class="tv-series">
-                <!-- <h1>TV Series</h1>
+            <!-- <div class="tv-series">
+                <h1>TV Series</h1>
                 <ul>
                     <li v-for="serie in store.tvSeries" :key="serie.id">
                         <FilmCard />
                     </li>
-                </ul> -->
-            </div>
+                </ul>
+            </div> -->
         </div>
     </div>
 </template>
