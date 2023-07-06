@@ -32,7 +32,7 @@ export default {
                     <li v-for="film in store.films" :key="film.id">
                         <FilmCard :title="film.title" :originalTitle="film.original_title"
                             :language="film.original_language" :vote="film.vote_average" :poster="film.poster_path"
-                            :imgPath="imgPath" />
+                            :imgPath="imgPath" :overview="film.overview" />
                     </li>
                 </ul>
             </div>

@@ -10,11 +10,13 @@ export default {
         language: String,
         vote: Number,
         poster: String,
-        imgPath: String
+        imgPath: String,
+        overview: String
     },
     data() {
         return {
-            hasItHover: false
+            hasItHover: false,
+            overView: this.overview.slice(0, 100) + "..."
         }
     },
 
@@ -35,8 +37,8 @@ export default {
         <h2 v-if="!hasPoster">{{ originalTitle }}</h2>
     </div>
     <div v-else class="card hover" @mouseenter="hasItHover = true" @mouseleave="hasItHover = false">
-        <h1>Questo film non ha immagine di copertina</h1>
-        <h2>{{ originalTitle }}</h2>
+        <h1>{{ originalTitle }}</h1>
+        <p>{{ overView }}</p>
     </div>
 </template>
 
@@ -48,12 +50,17 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #111111;
+    color: white;
 }
 
 .card.hover {
-    background-color: #000;
-    color: white;
     border: 1px solid white;
+}
+
+p {
+    padding: 0 10px;
+    font-size: 0.9rem;
 }
 
 img {
