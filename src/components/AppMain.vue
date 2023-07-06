@@ -5,11 +5,6 @@ import ProductionCard from './ProductionCard/ProductionCard.vue'
 export default {
     data() {
         return {
-            // title: store.results.title,
-            // originalTitle: store.results.original_title,
-            // vote: store.results.vote_avarage,
-            // language: store.results.original_language,
-            // id: store.results.id,
             store,
             imgPath: store.posterPath
 
@@ -36,14 +31,16 @@ export default {
                     </li>
                 </ul>
             </div>
-            <!-- <div class="tv-series">
+            <div class="tv-series">
                 <h1>TV Series</h1>
                 <ul>
                     <li v-for="serie in store.tvSeries" :key="serie.id">
-                        <ProductionCard />
+                        <ProductionCard :title="serie.title" :originalTitle="serie.original_name"
+                            :language="serie.original_language" :vote="serie.vote_average" :poster="serie.poster_path"
+                            :imgPath="imgPath" :overview="serie.overview" />
                     </li>
                 </ul>
-            </div> -->
+            </div>
         </div>
     </div>
 </template>

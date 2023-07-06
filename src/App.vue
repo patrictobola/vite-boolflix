@@ -17,9 +17,9 @@ export default {
   },
 
   methods: {
-    fetchApiDatas(endpoint, path) {
+    fetchApiDatas(endpoint, storePath, apiPath = "results") {
       axios.get(endpoint).then(res => {
-        store[path] = res.data.results
+        store[storePath] = res.data[apiPath]
       }).catch(err => {
         console.log(err.message)
       }).then(() => {
@@ -27,23 +27,31 @@ export default {
       })
     },
 
+    fetchGenresProduction() {
+      const endpoint = `${baseUri}/genre/tv/list${apiKey}`;
+      this.fetchApiDatas(endpoint, "filmGenres", "genres")
+    },
+
     fetchSearchedProduction(word) {
       this.fetchSearchedFilms(word);
       this.fetchSearchedTVSeries(word);
     },
     // Ho scelto volutamente di lasciarle distinte perché prevedo di creare un select che mi permette di scegliere se cercare solo film, solo serie tv oppure entrambi
-
     fetchSearchedFilms(word) {
       const endpoint = `${baseUri}/search/movie${apiKey}&query=${word}`;
       this.fetchApiDatas(endpoint, "films")
-      this.fetchSearchedTVSeries(word)
     },
+
     fetchSearchedTVSeries(word) {
       const endpoint = `${baseUri}/search/tv${apiKey}&query=${word}`
       this.fetchApiDatas(endpoint, "tvSeries")
     },
 
   },
+
+  created() {
+    this.fetchGenresProduction();
+  }
 }
 </script>
 
