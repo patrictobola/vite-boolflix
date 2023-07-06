@@ -56,7 +56,7 @@ export default {
 </script>
 
 <template>
-  <AppHeader @search-movie="fetchSearchedProduction" />
+  <AppHeader @search-movie="fetchSearchedProduction()" />
   <AppMain />
 </template>
 

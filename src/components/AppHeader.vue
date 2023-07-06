@@ -1,15 +1,24 @@
 <script>
 import SearchBar from './SearchInputs/SearchBar.vue';
+import SearchSelect from './SearchInputs/SearchSelect.vue'
+import { store } from '../data/store';
 
 export default {
     components: {
-        SearchBar
+        SearchBar,
+        SearchSelect
+    },
+    data() {
+        return {
+            store
+        }
     },
     methods: {
         fetchSearchedMovie(word) {
             this.$emit('search-movie', word)
         }
-    }
+    },
+
 }
 
 </script>
@@ -20,7 +29,8 @@ export default {
             <div>
                 <h1>BOOLFLIX</h1>
             </div>
-            <div>
+            <div class="searchSection">
+                <SearchSelect :genres="store.filmGenres" />
                 <SearchBar @search-movie="fetchSearchedMovie" placeholder="Cerca quì il tuo film o serie tv" />
             </div>
         </div>
@@ -28,6 +38,10 @@ export default {
 </template>
 
 <style scoped>
+.searchSection {
+    display: flex;
+}
+
 .navbar {
     height: 100px;
     background-color: #000;
