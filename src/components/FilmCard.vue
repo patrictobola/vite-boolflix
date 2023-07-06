@@ -29,10 +29,14 @@ export default {
 </script>
 
 <template>
-    <div class="card" @mouseenter="hasItHover = true" @mouseleave="hasItHover = false">
+    <div v-if="hasItHover" class="card" @mouseenter="hasItHover = true" @mouseleave="hasItHover = false">
         <img v-if="hasPoster" :src="`${imgPath}/w342${poster}`" :alt="title">
         <h1 v-else>Questo film non ha immagine di copertina</h1>
         <h2 v-if="!hasPoster">{{ originalTitle }}</h2>
+    </div>
+    <div v-else class="card hover" @mouseenter="hasItHover = true" @mouseleave="hasItHover = false">
+        <h1>Questo film non ha immagine di copertina</h1>
+        <h2>{{ originalTitle }}</h2>
     </div>
 </template>
 
@@ -44,6 +48,12 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.card.hover {
+    background-color: #000;
+    color: white;
+    border: 1px solid white;
 }
 
 img {
