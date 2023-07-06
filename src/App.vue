@@ -46,7 +46,9 @@ export default {
       const endpoint = `${baseUri}/search/tv${apiKey}&query=${word}`
       this.fetchApiDatas(endpoint, "tvSeries")
     },
-
+    fetchSelectedOption(word) {
+      console.log(word)
+    }
   },
 
   created() {
@@ -56,7 +58,7 @@ export default {
 </script>
 
 <template>
-  <AppHeader @search-movie="fetchSearchedProduction()" />
+  <AppHeader @search-movie="fetchSearchedProduction()" @genre-selected="fetchSelectedOption" />
   <AppMain />
 </template>
 

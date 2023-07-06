@@ -16,8 +16,12 @@ export default {
     methods: {
         fetchSearchedMovie(word) {
             this.$emit('search-movie', word)
+        },
+        fetchSelectedOption(word) {
+            this.$emit('genre-selected', word)
         }
     },
+    emits: ['search-movie', 'genre-selected']
 
 }
 
@@ -30,7 +34,7 @@ export default {
                 <h1>BOOLFLIX</h1>
             </div>
             <div class="searchSection">
-                <SearchSelect :genres="store.filmGenres" />
+                <SearchSelect @genre-selected="fetchSelectedOption" :options="store.filmGenres" />
                 <SearchBar @search-movie="fetchSearchedMovie" placeholder="Cerca quì il tuo film o serie tv" />
             </div>
         </div>

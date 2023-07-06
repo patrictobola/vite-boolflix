@@ -1,21 +1,23 @@
 <script>
+import { computed } from 'vue';
+
 export default {
     data() {
         return {
-            selectedGenre: "Action & Adventure",
+            selectedOption: 10759,
         }
     },
     props: {
-        genres: Array
-    }
-
+        options: Array
+    },
+    emits: ['genre-selected'],
 }
 </script>
 
 
 <template>
-    <select v-model="selectedGenre" name="genre" id="genre">
-        <option v-for="genre in genres" :key="genre.id" :value="genre.name">{{ genre.name }}</option>
+    <select v-model="selectedOption" @click="$emit('genre-selected', selectedOption)" name="genre" id="genre">
+        <option v-for="option in options" :key="option.id" :value="option.id">{{ option.name }}</option>
     </select>
 </template>
 
