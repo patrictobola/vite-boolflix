@@ -34,7 +34,6 @@ export default {
       this.fetchSearchedFilms(word);
       this.fetchSearchedTVSeries(word);
       this.fetchFilmsByID();
-      this.fetchActorsFromFilm();
     },
     // Ho scelto volutamente di lasciarle distinte perché prevedo di creare un select che mi permette di scegliere se cercare solo film, solo serie tv oppure entrambi
     fetchSearchedFilms(word) {

@@ -13,7 +13,16 @@ export default {
 
     components: {
         ProductionCard,
-    }
+    },
+    computed: {
+        filteredFilms() {
+            if (store.categoryID === 'all') return store.films
+            const word = store.categoryID;
+            return store.films.filter((film) => {
+                return film.genre_ids.includes(word)
+            })
+        }
+    },
 }
 </script>
 
@@ -24,7 +33,7 @@ export default {
                 <!-- Da quì parte la lista di film cercati  -->
                 <h1>Films</h1>
                 <ul>
-                    <li v-for="film in store.films" :key="film.id">
+                    <li v-for="film in filteredFilms" :key="film.id">
                         <ProductionCard :title="film.title" :originalTitle="film.original_title"
                             :language="film.original_language" :vote="film.vote_average" :poster="film.poster_path"
                             :imgPath="imgPath" :overview="film.overview" />

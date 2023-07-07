@@ -24,7 +24,8 @@ export default {
         return {
             hasItHover: false,
         }
-    }
+    },
+
 
 }
 
