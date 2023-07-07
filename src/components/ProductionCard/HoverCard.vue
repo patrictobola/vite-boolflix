@@ -26,6 +26,11 @@ export default {
             return url.href;
         },
     },
+    methods: {
+        nStars(n) {
+            return n <= this.roundedVote ? 'fas' : 'far'
+        }
+    }
 
 }
 </script>
@@ -36,13 +41,19 @@ export default {
         <h1>{{ originalTitle }}</h1>
         <img v-if="hasFlag" :src="flagPath" :alt="originalTitle">
         <span v-else>Language: {{ language }}</span>
-        <span>Vote: {{ roundedVote }}</span>
+        <div class="flex">
+            <font-awesome-icon v-for="n in 5" :key="n" :icon="[nStars(n), 'star']" />
+        </div>
         <p>{{ summary }}</p>
     </div>
 </template>
 
 
 <style scoped>
+.flex {
+    display: flex;
+}
+
 .card {
     border: 1px solid black;
     width: 100%;
