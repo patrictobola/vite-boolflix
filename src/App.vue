@@ -25,9 +25,9 @@ export default {
       })
     },
 
-    fetchGenresProduction() {
-      const endpoint = `${baseUri}/genre/tv/list${apiKey}`;
-      this.fetchApiDatas(endpoint, "filmGenres", "genres")
+    fetchGenresProduction(prodUri, dataPath) {
+      const endpoint = `${baseUri}/genre/${prodUri}/list${apiKey}`;
+      this.fetchApiDatas(endpoint, dataPath, "genres")
     },
 
     fetchSearchedProduction(word) {
@@ -67,7 +67,8 @@ export default {
 
 
   created() {
-    this.fetchGenresProduction();
+    this.fetchGenresProduction("movie", "filmGenres");
+    this.fetchGenresProduction("tv", "tvSeriesGenres");
   }
 }
 </script>

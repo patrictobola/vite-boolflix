@@ -8,7 +8,10 @@ export default {
         }
     },
     props: {
-        options: Array
+        options: Array,
+        placeholder: String,
+        category: String,
+        emitInfo: String
     },
     emits: ['genre-selected'],
 }
@@ -16,8 +19,10 @@ export default {
 
 
 <template>
-    <select v-model="selectedOption" @click="$emit('genre-selected', selectedOption)" name="genre" id="genre">
-        <option value="all">All films & series</option>
+    <select v-model="selectedOption" @click="$emit(emitInfo, selectedOption)" name="genre" id="genre">
+
+        <option value="all">{{ placeholder }}</option>
+        <option value="" disabled>{{ category }}</option>
         <option v-for="option in options" :key="option.id" :value="option.id">{{ option.name }}</option>
     </select>
 </template>
