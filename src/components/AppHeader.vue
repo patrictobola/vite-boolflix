@@ -18,7 +18,7 @@ export default {
             this.$emit('search-movie', word)
         },
         fetchSelectedOption(word) {
-            this.$emit('genre-selected', word)
+            store.categoryID = word
         }
     },
     emits: ['search-movie', 'genre-selected']

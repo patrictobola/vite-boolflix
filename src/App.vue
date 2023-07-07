@@ -22,8 +22,6 @@ export default {
         store[storePath] = res.data[apiPath]
       }).catch(err => {
         console.log(err.message)
-      }).then(() => {
-        console.log('Daje è andata!')
       })
     },
 
@@ -35,6 +33,7 @@ export default {
     fetchSearchedProduction(word) {
       this.fetchSearchedFilms(word);
       this.fetchSearchedTVSeries(word);
+      this.fetchFilmsByID();
     },
     // Ho scelto volutamente di lasciarle distinte perché prevedo di creare un select che mi permette di scegliere se cercare solo film, solo serie tv oppure entrambi
     fetchSearchedFilms(word) {
@@ -46,10 +45,17 @@ export default {
       const endpoint = `${baseUri}/search/tv${apiKey}&query=${word}`
       this.fetchApiDatas(endpoint, "tvSeries")
     },
-    fetchSelectedOption(word) {
-      console.log(word)
+
+    fetchFilmsByID() {
+      for (const film in store.films) {
+        if (Object.hasOwnProperty.call(store.films, film)) {
+          const element = store.films[film].id;
+          store.seachedFilmsID.push(element)
+        }
+      }
     }
   },
+
 
   created() {
     this.fetchGenresProduction();
@@ -58,7 +64,7 @@ export default {
 </script>
 
 <template>
-  <AppHeader @search-movie="fetchSearchedProduction" @genre-selected="fetchSelectedOption" />
+  <AppHeader @search-movie="fetchSearchedProduction" />
   <AppMain />
 </template>
 

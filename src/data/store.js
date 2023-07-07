@@ -3,10 +3,7 @@ export const store = reactive({
     films: [],
     filmGenres: [],
     tvSeries: [],
-    posterPath: 'https://image.tmdb.org/t/p'
-    // title: [],
-    // originalTitle: [],
-    // vote: [],
-    // language: [],
-    // id: []
+    posterPath: 'https://image.tmdb.org/t/p',
+    categoryID: 'all',
+    seachedFilmsID: []
 })
