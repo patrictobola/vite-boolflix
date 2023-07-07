@@ -34,6 +34,7 @@ export default {
       this.fetchSearchedFilms(word);
       this.fetchSearchedTVSeries(word);
       this.fetchFilmsByID();
+      this.fetchActorsFromFilm();
     },
     // Ho scelto volutamente di lasciarle distinte perché prevedo di creare un select che mi permette di scegliere se cercare solo film, solo serie tv oppure entrambi
     fetchSearchedFilms(word) {
@@ -47,12 +48,21 @@ export default {
     },
 
     fetchFilmsByID() {
+      if (this.seachedFilmsID.length === 20) return
       for (const film in store.films) {
         if (Object.hasOwnProperty.call(store.films, film)) {
           const element = store.films[film].id;
           store.seachedFilmsID.push(element)
         }
       }
+    },
+
+    fetchActorsFromFilm() {
+      store.seachedFilmsID.forEach(element => {
+        const endpoint = `${baseUri}/movie/${element}/credits${apiKey}`;
+        this.fetchApiDatas(endpoint, "cast", "cast")
+
+      });
     }
   },
 

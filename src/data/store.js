@@ -5,5 +5,6 @@ export const store = reactive({
     tvSeries: [],
     posterPath: 'https://image.tmdb.org/t/p',
     categoryID: 'all',
-    seachedFilmsID: []
+    seachedFilmsID: [],
+    cast: []
 })
