@@ -16,12 +16,20 @@ export default {
     },
     computed: {
         filteredFilms() {
-            if (store.categoryID === 'all') return store.films
-            const word = store.categoryID;
+            if (store.categoryMovieID === 'all') return store.films
+            const word = store.categoryMovieID;
             return store.films.filter((film) => {
                 return film.genre_ids.includes(word)
             })
-        }
+        },
+        filteredTVSeries() {
+            if (store.categoryTvSeriesID === 'all') return store.tvSeries
+            const word = store.categoryTvSeriesID;
+            return store.tvSeries.filter((series) => {
+                return series.genre_ids.includes(word)
+            })
+        },
+
     },
 }
 </script>
@@ -29,7 +37,7 @@ export default {
 <template>
     <div class="app-container">
         <div class="container">
-            <div class="films">
+            <div v-if="filteredFilms.length" class="films">
                 <!-- Da quì parte la lista di film cercati  -->
                 <h1>Films</h1>
                 <ul>
@@ -40,10 +48,10 @@ export default {
                     </li>
                 </ul>
             </div>
-            <div class="tv-series">
+            <div v-if="filteredTVSeries.length" class="tv-series">
                 <h1>TV Series</h1>
                 <ul>
-                    <li v-for="serie in store.tvSeries" :key="serie.id">
+                    <li v-for="serie in filteredTVSeries" :key="serie.id">
                         <ProductionCard :title="serie.title" :originalTitle="serie.original_name"
                             :language="serie.original_language" :vote="serie.vote_average" :poster="serie.poster_path"
                             :imgPath="imgPath" :overview="serie.overview" />
